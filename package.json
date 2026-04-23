@@ -1,6 +1,6 @@
 {
   "name": "radar-ilheus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "servidor.js",
   "scripts": {
     "start": "node servidor.js"

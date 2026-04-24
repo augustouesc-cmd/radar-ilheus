@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador IA — Radar Ilhéus Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="gerador.css">
+</head>
+<body>
+
+  <button class="sidebar-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+
+  <!-- ====== SIDEBAR ====== -->
+  <aside class="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__logo">RADAR<span>●</span></div>
+      <div class="sidebar__sub">Admin</div>
+    </div>
+
+    <nav class="sidebar__nav">
+      <div class="nav-section">Conteúdo</div>
+      <a href="index.html" class="nav-item">
+        <i class="fas fa-newspaper"></i> Notícias
+      </a>
+      <a href="editor.html" class="nav-item">
+        <i class="fas fa-plus-circle"></i> Nova Notícia
+      </a>
+      <a href="gerador.html" class="nav-item active">
+        <i class="fas fa-robot"></i> Gerador IA
+      </a>
+      <a href="social.html" class="nav-item">
+        <i class="fab fa-instagram"></i> Redes Sociais
+      </a>
+      <a href="monitor.html" class="nav-item">
+        <i class="fas fa-chart-line"></i> Monitor
+      </a>
+
+      <div class="nav-section" style="margin-top:8px">Portal</div>
+      <a href="../index.html" target="_blank" class="nav-item">
+        <i class="fas fa-external-link-alt"></i> Ver Portal
+      </a>
+    </nav>
+
+    <div class="sidebar__footer">
+      <div style="margin-bottom:4px;color:rgba(255,255,255,.55);font-size:.75rem">
+        <i class="fas fa-circle" style="color:#16a34a;font-size:.5rem"></i>
+        &nbsp;Radar Ilhéus
+      </div>
+      <a href="index.html">← Todas as notícias</a>
+    </div>
+  </aside>
+
+  <!-- ====== MAIN ====== -->
+  <div class="main-wrapper">
+
+    <!-- Header -->
+    <header class="top-header">
+      <div class="top-header__left">
+        <nav class="breadcrumb-admin">
+          <a href="index.html">Admin</a>
+          <i class="fas fa-chevron-right" style="font-size:.6rem"></i>
+          <span>Gerador IA</span>
+        </nav>
+      </div>
+      <div class="top-header__actions">
+        <a href="editor.html" class="btn btn-primary btn-sm">
+          <i class="fas fa-plus"></i> Nova Notícia
+        </a>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="page-content">
+
+      <!-- Topo informativo -->
+      <div class="gen-hero">
+        <div class="gen-hero__icon"><i class="fas fa-robot"></i></div>
+        <div class="gen-hero__text">
+          <h1>Gerador de Notícias com IA</h1>
+          <p>Cole o texto original abaixo. A IA reescreve com título viral, subtítulo, resumo e versão completa — pronto para publicar.</p>
+        </div>
+        <div class="gen-hero__badge">
+          <i class="fas fa-circle-dot"></i> Powered by Claude Opus
+        </div>
+      </div>
+
+      <!-- Layout principal -->
+      <div class="gen-layout">
+
+        <!-- Painel esquerdo: entrada -->
+        <div class="gen-input-panel panel">
+          <div class="panel__header">
+            <i class="fas fa-file-alt"></i> Notícia Original
+          </div>
+          <div class="panel__body">
+            <div class="gen-textarea-wrap">
+              <textarea
+                id="gen-input"
+                placeholder="Cole aqui o texto da notícia original que deseja reescrever...
+
+Pode ser um texto de outro portal, nota de assessoria, press release ou qualquer conteúdo jornalístico. A IA irá gerar uma versão original e otimizada para o Radar Ilhéus."
+                spellcheck="true"
+                lang="pt-BR"
+              ></textarea>
+              <div class="gen-char-count"><span id="gen-char">0</span> caracteres</div>
+            </div>
+
+            <div id="gen-server-url-wrap" class="gen-server-row">
+              <label><i class="fas fa-server"></i> URL do servidor</label>
+              <div class="gen-server-input">
+                <input type="url" id="gen-server-url" value="http://localhost:3131" placeholder="http://localhost:3131">
+                <button type="button" id="btn-test-server" class="btn btn-secondary btn-sm">
+                  <i class="fas fa-plug"></i> Testar
+                </button>
+              </div>
+              <div id="gen-server-status" class="gen-server-status"></div>
+            </div>
+
+            <button type="button" id="btn-gerar" class="btn btn-primary btn-lg gen-btn-gerar">
+              <i class="fas fa-magic"></i>
+              <span id="btn-gerar-text">Gerar com IA</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Painel direito: resultado -->
+        <div class="gen-result-panel" id="gen-result-panel">
+
+          <!-- Estado inicial -->
+          <div class="gen-empty" id="gen-empty">
+            <div class="gen-empty__icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+            <div class="gen-empty__title">Aguardando notícia</div>
+            <div class="gen-empty__text">Cole o texto original ao lado e clique em "Gerar com IA" para criar uma versão otimizada.</div>
+          </div>
+
+          <!-- Skeleton loader -->
+          <div class="gen-loading" id="gen-loading" style="display:none">
+            <div class="gen-loading__header">
+              <div class="gen-spinner"><i class="fas fa-circle-notch fa-spin"></i></div>
+              <div>
+                <div class="gen-loading__title">Gerando com IA...</div>
+                <div class="gen-loading__sub" id="gen-loading-msg">Analisando o texto original</div>
+              </div>
+            </div>
+            <div class="skeleton-block" style="height:28px;margin-bottom:12px"></div>
+            <div class="skeleton-block" style="height:18px;width:80%;margin-bottom:20px"></div>
+            <div class="skeleton-block" style="height:60px;margin-bottom:20px"></div>
+            <div class="skeleton-block" style="height:120px"></div>
+          </div>
+
+          <!-- Resultado -->
+          <div class="gen-result" id="gen-result" style="display:none">
+
+            <!-- Título -->
+            <div class="gen-card" id="card-titulo">
+              <div class="gen-card__header">
+                <span class="gen-card__label"><i class="fas fa-heading"></i> Título</span>
+                <div class="gen-card__actions">
+                  <button type="button" class="gen-action-btn" data-copy="resultado-titulo" title="Copiar">
+                    <i class="fas fa-copy"></i>
+                  </button>
+                  <button type="button" class="gen-action-btn gen-action-btn--use" data-use="titulo" title="Usar no editor">
+                    <i class="fas fa-arrow-right"></i> Usar
+                  </button>
+                </div>
+              </div>
+              <div class="gen-card__body gen-card__body--titulo" id="resultado-titulo"></div>
+            </div>
+
+            <!-- Subtítulo -->
+            <div class="gen-card" id="card-subtitulo">
+              <div class="gen-card__header">
+                <span class="gen-card__label"><i class="fas fa-align-left"></i> Subtítulo</span>
+                <div class="gen-card__actions">
+                  <button type="button" class="gen-action-btn" data-copy="resultado-subtitulo" title="Copiar">
+                    <i class="fas fa-copy"></i>
+                  </button>
+                  <button type="button" class="gen-action-btn gen-action-btn--use" data-use="subtitulo" title="Usar no editor">
+                    <i class="fas fa-arrow-right"></i> Usar
+                  </button>
+                </div>
+              </div>
+              <div class="gen-card__body" id="resultado-subtitulo"></div>
+            </div>
+
+            <!-- Resumo -->
+            <div class="gen-card" id="card-resumo">
+              <div class="gen-card__header">
+                <span class="gen-card__label"><i class="fas fa-list-ul"></i> Resumo</span>
+                <div class="gen-card__actions">
+                  <button type="button" class="gen-action-btn" data-copy="resultado-resumo" title="Copiar">
+                    <i class="fas fa-copy"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="gen-card__body" id="resultado-resumo"></div>
+            </div>
+
+            <!-- Versão reescrita -->
+            <div class="gen-card gen-card--full" id="card-versao">
+              <div class="gen-card__header">
+                <span class="gen-card__label"><i class="fas fa-pen-nib"></i> Versão Reescrita</span>
+                <div class="gen-card__actions">
+                  <button type="button" class="gen-action-btn" data-copy="resultado-versao" title="Copiar">
+                    <i class="fas fa-copy"></i>
+                  </button>
+                  <button type="button" class="gen-action-btn gen-action-btn--use gen-action-btn--primary" data-use="conteudo" title="Usar no editor">
+                    <i class="fas fa-arrow-right"></i> Usar no Editor
+                  </button>
+                </div>
+              </div>
+              <div class="gen-card__body gen-card__body--versao" id="resultado-versao"></div>
+            </div>
+
+            <!-- Botão abrir editor -->
+            <div class="gen-open-editor">
+              <button type="button" id="btn-abrir-editor" class="btn btn-primary btn-lg">
+                <i class="fas fa-edit"></i> Abrir no Editor com Todos os Campos
+              </button>
+              <button type="button" id="btn-gerar-novamente" class="btn btn-secondary">
+                <i class="fas fa-redo"></i> Gerar Novamente
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script src="admin.js"></script>
+  <script src="gerador.js"></script>
+</body>
+</html>

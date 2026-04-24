@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redes Sociais — Radar Ilhéus Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="social.css">
+</head>
+<body>
+
+  <button class="sidebar-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+
+  <aside class="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__logo">RADAR<span>●</span></div>
+      <div class="sidebar__sub">Admin</div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="nav-section">Conteúdo</div>
+      <a href="index.html" class="nav-item"><i class="fas fa-newspaper"></i> Notícias</a>
+      <a href="editor.html" class="nav-item"><i class="fas fa-plus-circle"></i> Nova Notícia</a>
+      <a href="gerador.html" class="nav-item"><i class="fas fa-robot"></i> Gerador IA</a>
+      <a href="social.html" class="nav-item active"><i class="fab fa-instagram"></i> Redes Sociais</a>
+      <a href="monitor.html" class="nav-item"><i class="fas fa-chart-line"></i> Monitor</a>
+      <div class="nav-section" style="margin-top:8px">Portal</div>
+      <a href="../index.html" target="_blank" class="nav-item"><i class="fas fa-external-link-alt"></i> Ver Portal</a>
+    </nav>
+    <div class="sidebar__footer">
+      <div style="margin-bottom:4px;color:rgba(255,255,255,.55);font-size:.75rem">
+        <i class="fas fa-circle" style="color:#16a34a;font-size:.5rem"></i>
+        &nbsp;Radar Ilhéus
+      </div>
+      <a href="index.html">← Todas as notícias</a>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="top-header">
+      <div class="top-header__left">
+        <nav class="breadcrumb-admin">
+          <a href="index.html">Admin</a>
+          <i class="fas fa-chevron-right" style="font-size:.6rem"></i>
+          <span>Redes Sociais</span>
+        </nav>
+      </div>
+      <div class="top-header__actions">
+        <a href="editor.html" class="btn btn-primary btn-sm">
+          <i class="fas fa-plus"></i> Nova Notícia
+        </a>
+      </div>
+    </header>
+
+    <div class="page-content">
+
+      <!-- Hero -->
+      <div class="social-hero">
+        <div class="social-hero__icons">
+          <i class="fab fa-instagram"></i>
+        </div>
+        <div class="social-hero__text">
+          <h1>Gerador de Conteúdo para Instagram</h1>
+          <p>Cole a notícia e receba título, legenda e chamada de engajamento prontos para publicar.</p>
+        </div>
+        <div class="social-hero__badge">
+          <i class="fas fa-bolt"></i> claude-sonnet-4-6
+        </div>
+      </div>
+
+      <!-- Layout -->
+      <div class="social-layout">
+
+        <!-- Painel esquerdo: entrada -->
+        <div class="social-input-panel panel">
+          <div class="panel__header"><i class="fas fa-file-alt"></i> Notícia</div>
+          <div class="panel__body">
+            <div class="soc-textarea-wrap">
+              <textarea id="soc-input"
+                placeholder="Cole aqui o texto da notícia que deseja transformar em conteúdo para o Instagram..."
+                spellcheck="true" lang="pt-BR"></textarea>
+              <div class="soc-char-count"><span id="soc-char">0</span> caracteres</div>
+            </div>
+
+            <div class="soc-server-row">
+              <label><i class="fas fa-server"></i> Servidor</label>
+              <div class="soc-server-input">
+                <input type="url" id="soc-server-url" value="http://localhost:3131">
+                <button type="button" id="btn-soc-test" class="btn btn-secondary btn-sm">
+                  <i class="fas fa-plug"></i>
+                </button>
+              </div>
+              <div id="soc-server-status" class="soc-server-status"></div>
+            </div>
+
+            <button type="button" id="btn-gerar-social" class="btn btn-primary soc-btn-gerar" disabled>
+              <i class="fab fa-instagram"></i>
+              <span id="btn-soc-text">Gerar para Instagram</span>
+            </button>
+
+            <!-- Resultado compacto: cards copiáveis -->
+            <div id="soc-cards" style="display:none">
+              <div class="soc-divider"><span>Conteúdo gerado</span></div>
+
+              <!-- Título -->
+              <div class="soc-card">
+                <div class="soc-card__head">
+                  <span><i class="fas fa-heading"></i> Título da Imagem</span>
+                  <button class="soc-copy-btn" data-target="soc-res-titulo"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="soc-card__body soc-card__body--titulo" id="soc-res-titulo">—</div>
+              </div>
+
+              <!-- Legenda -->
+              <div class="soc-card">
+                <div class="soc-card__head">
+                  <span><i class="fas fa-align-left"></i> Legenda</span>
+                  <button class="soc-copy-btn" data-target="soc-res-legenda"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="soc-card__body" id="soc-res-legenda">—</div>
+              </div>
+
+              <!-- Chamada -->
+              <div class="soc-card">
+                <div class="soc-card__head">
+                  <span><i class="fas fa-comment-dots"></i> Chamada de Engajamento</span>
+                  <button class="soc-copy-btn" data-target="soc-res-chamada"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="soc-card__body soc-card__body--chamada" id="soc-res-chamada">—</div>
+              </div>
+
+              <!-- Hashtags -->
+              <div class="soc-card">
+                <div class="soc-card__head">
+                  <span><i class="fas fa-hashtag"></i> Hashtags</span>
+                  <button class="soc-copy-btn" data-target="soc-res-hashtags"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="soc-card__body soc-card__body--tags" id="soc-res-hashtags">—</div>
+              </div>
+
+              <!-- Stories -->
+              <div class="soc-card soc-card--stories">
+                <div class="soc-card__head">
+                  <span><i class="fas fa-circle-play"></i> Stories</span>
+                  <button class="soc-copy-btn" data-target="soc-res-stories"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="soc-card__body" id="soc-res-stories">—</div>
+              </div>
+
+              <!-- Copiar tudo -->
+              <button type="button" id="btn-copiar-tudo" class="btn btn-primary soc-btn-copiar-tudo">
+                <i class="fas fa-clipboard"></i> Copiar Legenda Completa
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Painel direito: preview Instagram -->
+        <div class="social-preview-panel">
+
+          <!-- Tabs Feed / Stories -->
+          <div class="preview-tabs">
+            <button type="button" class="preview-tab active" data-view="feed">
+              <i class="fas fa-th"></i> Feed
+            </button>
+            <button type="button" class="preview-tab" data-view="stories">
+              <i class="fas fa-circle-play"></i> Stories
+            </button>
+          </div>
+
+          <!-- Preview Feed -->
+          <div id="preview-feed" class="ig-phone">
+            <div class="ig-frame">
+
+              <!-- Header do app -->
+              <div class="ig-app-bar">
+                <span class="ig-app-title">Instagram</span>
+                <div class="ig-app-icons">
+                  <i class="fas fa-heart"></i>
+                  <i class="fab fa-facebook-messenger"></i>
+                </div>
+              </div>
+
+              <!-- Post -->
+              <div class="ig-post">
+                <!-- Post header -->
+                <div class="ig-post-header">
+                  <div class="ig-avatar">R</div>
+                  <div class="ig-post-meta">
+                    <div class="ig-username">radarilheus</div>
+                    <div class="ig-location">Ilhéus, Bahia</div>
+                  </div>
+                  <i class="fas fa-ellipsis-h ig-more"></i>
+                </div>
+
+                <!-- Imagem do post (simulada) -->
+                <div class="ig-image" id="ig-image-feed">
+                  <div class="ig-image-placeholder" id="ig-placeholder">
+                    <i class="fas fa-image"></i>
+                    <span>Imagem da notícia</span>
+                  </div>
+                  <div class="ig-image-overlay" id="ig-title-overlay" style="display:none">
+                    <div class="ig-overlay-brand">RADAR<span>●</span></div>
+                    <div class="ig-overlay-title" id="ig-overlay-titulo"></div>
+                  </div>
+                </div>
+
+                <!-- Ações -->
+                <div class="ig-actions">
+                  <div class="ig-actions-left">
+                    <button class="ig-btn"><i class="far fa-heart"></i></button>
+                    <button class="ig-btn"><i class="far fa-comment"></i></button>
+                    <button class="ig-btn"><i class="far fa-paper-plane"></i></button>
+                  </div>
+                  <button class="ig-btn"><i class="far fa-bookmark"></i></button>
+                </div>
+
+                <div class="ig-likes">Seja o primeiro a curtir</div>
+
+                <!-- Caption -->
+                <div class="ig-caption" id="ig-caption">
+                  <span class="ig-caption-user">radarilheus</span>
+                  <span id="ig-caption-text" class="ig-caption-placeholder">
+                    Gere o conteúdo para ver a prévia aqui...
+                  </span>
+                </div>
+
+                <!-- Hashtags -->
+                <div class="ig-tags" id="ig-tags-preview" style="display:none"></div>
+
+                <!-- Comentário -->
+                <div class="ig-comment-bar">
+                  <div class="ig-comment-avatar">V</div>
+                  <span class="ig-comment-placeholder">Adicionar um comentário...</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Preview Stories -->
+          <div id="preview-stories" class="ig-phone ig-phone--stories" style="display:none">
+            <div class="ig-frame ig-frame--stories">
+              <div class="ig-stories-bg" id="ig-stories-bg">
+                <div class="ig-stories-bar">
+                  <div class="ig-stories-progress"><div class="ig-stories-fill"></div></div>
+                </div>
+                <div class="ig-stories-header">
+                  <div class="ig-stories-avatar">R</div>
+                  <div class="ig-stories-user">
+                    <span>radarilheus</span>
+                    <span class="ig-stories-time">agora</span>
+                  </div>
+                  <div class="ig-stories-controls">
+                    <i class="fas fa-ellipsis-v"></i>
+                    <i class="fas fa-times"></i>
+                  </div>
+                </div>
+                <div class="ig-stories-content">
+                  <div class="ig-stories-brand">RADAR<span>●</span></div>
+                  <div class="ig-stories-text" id="ig-stories-text">
+                    Gere o conteúdo para ver a prévia aqui...
+                  </div>
+                </div>
+                <div class="ig-stories-footer">
+                  <div class="ig-stories-reply">
+                    <input type="text" placeholder="Enviar mensagem...">
+                    <i class="far fa-paper-plane"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading overlay -->
+  <div class="soc-loading-overlay" id="soc-loading" style="display:none">
+    <div class="soc-loading-box">
+      <div class="soc-loading-icons">
+        <i class="fab fa-instagram soc-spin-icon"></i>
+      </div>
+      <div class="soc-loading-title">Criando conteúdo...</div>
+      <div class="soc-loading-sub" id="soc-loading-sub">Adaptando para o formato Instagram</div>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script src="admin.js"></script>
+  <script src="social.js"></script>
+</body>
+</html>

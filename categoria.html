@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Categoria — Radar Ilhéus">
+  <title>Categoria — Radar Ilhéus</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar__date">
+        <i class="fas fa-calendar-alt"></i>
+        <span class="topbar-datetime">Carregando...</span>
+      </div>
+      <div class="top-bar__right">
+        <div class="top-bar__weather">
+          <i class="fas fa-sun" style="color:#F5B400"></i>
+          <strong>28°C</strong>&nbsp;Ilhéus
+        </div>
+        <div class="top-bar__socials">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="site-logo">
+        <span class="site-logo__radar">RADAR<span>●</span></span>
+        <span class="site-logo__sub">Ilhéus & Região</span>
+      </a>
+      <form class="header-search" role="search">
+        <input type="search" placeholder="Buscar notícias..." aria-label="Buscar">
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </form>
+      <button class="btn-menu" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav class="site-nav">
+    <div class="container">
+      <ul class="nav-list"></ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="nav-mobile-overlay">
+    <button class="nav-mobile-close"><i class="fas fa-times"></i></button>
+    <nav class="nav-mobile-list"></nav>
+  </div>
+
+  <!-- BREAKING -->
+  <div class="breaking-bar" aria-live="polite">
+    <div class="breaking-bar__label">
+      <span class="badge-live">AO VIVO</span>
+      URGENTE
+    </div>
+    <div class="breaking-bar__track">
+      <div class="breaking-bar__items"></div>
+    </div>
+  </div>
+
+  <!-- CATEGORY HERO -->
+  <div class="category-hero">
+    <div class="container">
+      <h1><span class="category-hero__accent">Categoria</span></h1>
+      <p>Todas as notícias desta editoria</p>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main>
+    <div class="container" style="padding-bottom: 32px;">
+
+      <nav class="breadcrumb">
+        <a href="index.html"><i class="fas fa-home"></i> Início</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Categoria</span>
+      </nav>
+
+      <div class="category-layout">
+
+        <!-- Grid de artigos -->
+        <div>
+          <div class="category-main-grid"></div>
+
+          <!-- Paginação -->
+          <div class="pagination">
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+            <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="sidebar-block">
+            <div class="sidebar-block__header">
+              <h3><i class="fas fa-fire"></i> Mais Lidas</h3>
+            </div>
+            <div class="sidebar-block__body">
+              <ul class="most-read-list"></ul>
+            </div>
+          </div>
+
+          <!-- Categorias -->
+          <div class="sidebar-block">
+            <div class="sidebar-block__header">
+              <h3><i class="fas fa-th-list"></i> Todas as Categorias</h3>
+            </div>
+            <div class="sidebar-block__body">
+              <ul style="padding: 8px 0;">
+                <li><a href="categoria.html?c=politica" style="display:flex;align-items:center;gap:8px;padding:9px 16px;font-size:.88rem;color:#333;border-bottom:1px solid var(--border);transition:background .2s" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">&nbsp;<i class="fas fa-landmark" style="color:var(--blue);width:16px"></i>&nbsp; Política</a></li>
+                <li><a href="categoria.html?c=economia" style="display:flex;align-items:center;gap:8px;padding:9px 16px;font-size:.88rem;color:#333;border-bottom:1px solid var(--border);transition:background .2s" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">&nbsp;<i class="fas fa-chart-line" style="color:var(--blue);width:16px"></i>&nbsp; Economia</a></li>
+                <li><a href="categoria.html?c=esportes" style="display:flex;align-items:center;gap:8px;padding:9px 16px;font-size:.88rem;color:#333;border-bottom:1px solid var(--border);transition:background .2s" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">&nbsp;<i class="fas fa-futbol" style="color:var(--blue);width:16px"></i>&nbsp; Esportes</a></li>
+                <li><a href="categoria.html?c=cultura" style="display:flex;align-items:center;gap:8px;padding:9px 16px;font-size:.88rem;color:#333;border-bottom:1px solid var(--border);transition:background .2s" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">&nbsp;<i class="fas fa-theater-masks" style="color:var(--blue);width:16px"></i>&nbsp; Cultura</a></li>
+                <li><a href="categoria.html?c=saude" style="display:flex;align-items:center;gap:8px;padding:9px 16px;font-size:.88rem;color:#333;border-bottom:1px solid var(--border);transition:background .2s" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">&nbsp;<i class="fas fa-heartbeat" style="color:var(--blue);width:16px"></i>&nbsp; Saúde</a></li>
+                <li><a href="categoria.html?c=educacao" style="display:flex;align-items:center;gap:8px;padding:9px 16px;font-size:.88rem;color:#333;border-bottom:1px solid var(--border);transition:background .2s" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">&nbsp;<i class="fas fa-graduation-cap" style="color:var(--blue);width:16px"></i>&nbsp; Educação</a></li>
+                <li><a href="categoria.html?c=turismo" style="display:flex;align-items:center;gap:8px;padding:9px 16px;font-size:.88rem;color:#333;border-bottom:1px solid var(--border);transition:background .2s" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">&nbsp;<i class="fas fa-umbrella-beach" style="color:var(--blue);width:16px"></i>&nbsp; Turismo</a></li>
+                <li><a href="categoria.html?c=cidades" style="display:flex;align-items:center;gap:8px;padding:9px 16px;font-size:.88rem;color:#333;border-bottom:1px solid var(--border);transition:background .2s" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">&nbsp;<i class="fas fa-city" style="color:var(--blue);width:16px"></i>&nbsp; Cidades</a></li>
+                <li><a href="categoria.html?c=empregos" style="display:flex;align-items:center;gap:8px;padding:9px 16px;font-size:.88rem;color:#333;transition:background .2s" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">&nbsp;<i class="fas fa-briefcase" style="color:var(--blue);width:16px"></i>&nbsp; Empregos</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="sidebar-block">
+            <div class="sidebar-block__header">
+              <h3><i class="fas fa-envelope"></i> Newsletter</h3>
+            </div>
+            <div class="sidebar-block__body">
+              <div class="newsletter-block">
+                <p>Receba as principais notícias de Ilhéus todo dia às 7h.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Inscrito!')">
+                  <input type="email" placeholder="seu@email.com" required>
+                  <button type="submit" class="btn-subscribe">
+                    <i class="fas fa-paper-plane"></i> Quero receber
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="footer-logo">RADAR<span>●</span></div>
+          <p>O portal de notícias em tempo real de Ilhéus e região sul da Bahia.</p>
+          <div class="footer-socials">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Editorias</h4>
+          <ul>
+            <li><a href="categoria.html?c=politica">Política</a></li>
+            <li><a href="categoria.html?c=economia">Economia</a></li>
+            <li><a href="categoria.html?c=esportes">Esportes</a></li>
+            <li><a href="categoria.html?c=cultura">Cultura</a></li>
+            <li><a href="categoria.html?c=saude">Saúde</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Portal</h4>
+          <ul>
+            <li><a href="#">Sobre o Radar Ilhéus</a></li>
+            <li><a href="#">Redação</a></li>
+            <li><a href="#">Publicidade</a></li>
+            <li><a href="#">Fale Conosco</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Política de Privacidade</a></li>
+            <li><a href="#">Termos de Uso</a></li>
+            <li><a href="#">Correções</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 <strong>Radar Ilhéus</strong>. Todos os direitos reservados.</span>
+        <span>Ilhéus, Bahia — Brasil</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" aria-label="Voltar ao topo">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor de Notícia — Radar Ilhéus Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <button class="sidebar-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+
+  <!-- ====== SIDEBAR ====== -->
+  <aside class="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__logo">RADAR<span>●</span></div>
+      <div class="sidebar__sub">Admin</div>
+    </div>
+
+    <nav class="sidebar__nav">
+      <div class="nav-section">Conteúdo</div>
+      <a href="index.html" class="nav-item">
+        <i class="fas fa-newspaper"></i> Notícias
+      </a>
+      <a href="editor.html" class="nav-item active">
+        <i class="fas fa-plus-circle"></i> Nova Notícia
+      </a>
+      <a href="gerador.html" class="nav-item">
+        <i class="fas fa-robot"></i> Gerador IA
+      </a>
+      <a href="social.html" class="nav-item">
+        <i class="fab fa-instagram"></i> Redes Sociais
+      </a>
+      <a href="monitor.html" class="nav-item">
+        <i class="fas fa-chart-line"></i> Monitor
+      </a>
+
+      <div class="nav-section" style="margin-top:8px">Portal</div>
+      <a href="../index.html" target="_blank" class="nav-item">
+        <i class="fas fa-external-link-alt"></i> Ver Portal
+      </a>
+    </nav>
+
+    <div class="sidebar__footer">
+      <div style="margin-bottom:4px;color:rgba(255,255,255,.55);font-size:.75rem">
+        <i class="fas fa-circle" style="color:#16a34a;font-size:.5rem"></i>
+        &nbsp;Radar Ilhéus
+      </div>
+      <a href="index.html">← Todas as notícias</a>
+    </div>
+  </aside>
+
+  <!-- ====== MAIN ====== -->
+  <div class="main-wrapper">
+
+    <!-- Header -->
+    <header class="top-header">
+      <div class="top-header__left">
+        <nav class="breadcrumb-admin">
+          <a href="index.html">Notícias</a>
+          <i class="fas fa-chevron-right" style="font-size:.6rem"></i>
+          <span id="page-title">Nova Notícia</span>
+        </nav>
+      </div>
+      <div class="top-header__actions">
+        <span style="font-size:.72rem;color:var(--muted);margin-right:4px">
+          <kbd style="background:#f3f4f6;border:1px solid #d1d5db;border-radius:4px;padding:2px 6px;font-size:.68rem">Ctrl+S</kbd> salvar
+        </span>
+        <button class="btn btn-secondary btn-sm" id="btn-preview-portal">
+          <i class="fas fa-eye"></i> Prévia no portal
+        </button>
+        <button class="btn btn-secondary" id="btn-save-draft">
+          <i class="fas fa-save"></i> Salvar rascunho
+        </button>
+        <button class="btn btn-primary" id="btn-publish">
+          <i class="fas fa-globe"></i> Publicar
+        </button>
+      </div>
+    </header>
+
+    <!-- Editor -->
+    <div class="page-content">
+      <form id="editor-form" onsubmit="return false">
+        <div class="editor-layout">
+
+          <!-- ===== COLUNA PRINCIPAL ===== -->
+          <div class="editor-main">
+
+            <!-- Título -->
+            <div class="field-group">
+              <label class="field-group__label">Título <span style="color:var(--red)">*</span></label>
+              <textarea
+                id="field-title"
+                class="field-input field-input--title"
+                placeholder="Digite o título da notícia..."
+                rows="2"
+                maxlength="200"
+                style="resize:none"
+              ></textarea>
+            </div>
+
+            <!-- Subtítulo -->
+            <div class="field-group">
+              <label class="field-group__label">Subtítulo / Chamada</label>
+              <textarea
+                id="field-subtitle"
+                class="field-input field-input--subtitle"
+                placeholder="Uma frase que complementa o título e atrai o leitor..."
+                rows="2"
+                maxlength="300"
+                style="resize:none"
+              ></textarea>
+            </div>
+
+            <!-- Editor de conteúdo -->
+            <div class="rich-editor-wrap">
+              <div class="rich-editor-label"><i class="fas fa-align-left" style="margin-right:6px"></i>Conteúdo <span style="color:var(--red)">*</span></div>
+
+              <!-- Tabs Editor/Prévia -->
+              <div class="editor-tabs">
+                <button type="button" class="editor-tab active" data-tab="editor"><i class="fas fa-edit"></i>&nbsp; Editar</button>
+                <button type="button" class="editor-tab" data-tab="preview"><i class="fas fa-eye"></i>&nbsp; Prévia</button>
+              </div>
+
+              <!-- Toolbar -->
+              <div class="editor-toolbar" id="editor-toolbar">
+                <!-- Formatação de texto -->
+                <button type="button" class="toolbar-btn" data-cmd="bold"         title="Negrito (Ctrl+B)"><b>B</b></button>
+                <button type="button" class="toolbar-btn" data-cmd="italic"       title="Itálico (Ctrl+I)"><i>I</i></button>
+                <button type="button" class="toolbar-btn" data-cmd="underline"    title="Sublinhado (Ctrl+U)"><u>U</u></button>
+                <div class="toolbar-sep"></div>
+                <!-- Headings -->
+                <button type="button" class="toolbar-btn toolbar-btn--text" data-cmd="formatBlock" data-val="h2" title="Título H2">H2</button>
+                <button type="button" class="toolbar-btn toolbar-btn--text" data-cmd="formatBlock" data-val="h3" title="Título H3">H3</button>
+                <button type="button" class="toolbar-btn toolbar-btn--text" data-cmd="formatBlock" data-val="p"  title="Parágrafo">P</button>
+                <div class="toolbar-sep"></div>
+                <!-- Listas -->
+                <button type="button" class="toolbar-btn" data-cmd="insertUnorderedList" title="Lista com marcadores"><i class="fas fa-list-ul"></i></button>
+                <button type="button" class="toolbar-btn" data-cmd="insertOrderedList"   title="Lista numerada"><i class="fas fa-list-ol"></i></button>
+                <div class="toolbar-sep"></div>
+                <!-- Blocos -->
+                <button type="button" class="toolbar-btn" data-cmd="formatBlock" data-val="blockquote" title="Citação"><i class="fas fa-quote-left"></i></button>
+                <div class="toolbar-sep"></div>
+                <!-- Link -->
+                <button type="button" class="toolbar-btn" data-cmd="createLink" title="Inserir link"><i class="fas fa-link"></i></button>
+                <button type="button" class="toolbar-btn" data-cmd="unlink"     title="Remover link"><i class="fas fa-unlink"></i></button>
+                <div class="toolbar-sep"></div>
+                <!-- Desfazer -->
+                <button type="button" class="toolbar-btn" data-cmd="undo" title="Desfazer (Ctrl+Z)"><i class="fas fa-undo"></i></button>
+                <button type="button" class="toolbar-btn" data-cmd="redo" title="Refazer (Ctrl+Y)"><i class="fas fa-redo"></i></button>
+              </div>
+
+              <!-- Área de edição -->
+              <div
+                id="editor-content"
+                class="editor-content"
+                contenteditable="true"
+                data-placeholder="Escreva o conteúdo da notícia aqui... Use a barra de ferramentas para formatar o texto."
+                spellcheck="true"
+                lang="pt-BR"
+              ></div>
+
+              <!-- Prévia -->
+              <div id="preview-panel" class="editor-preview"></div>
+
+              <!-- Status bar -->
+              <div class="editor-statusbar">
+                <span><i class="fas fa-font"></i> <span id="word-count">0 palavras</span></span>
+                <span><span id="char-count">0 caracteres</span></span>
+                <span><i class="fas fa-clock"></i> <span id="read-time">0 min de leitura</span></span>
+                <span class="autosave-indicator" id="autosave-status"></span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ===== SIDEBAR DO EDITOR ===== -->
+          <aside class="editor-sidebar">
+
+            <!-- Publicação -->
+            <div class="panel">
+              <div class="panel__header">
+                <i class="fas fa-paper-plane"></i> Publicação
+              </div>
+              <div class="panel__body">
+                <div id="status-display" class="status-display" style="margin-bottom:12px">
+                  <i class="fas fa-edit" style="color:var(--muted)"></i> Rascunho
+                </div>
+                <div class="publish-actions">
+                  <button type="button" class="btn btn-primary btn-lg" id="btn-publish-2">
+                    <i class="fas fa-globe"></i> Publicar no Portal
+                  </button>
+                  <button type="button" class="btn btn-secondary" id="btn-save-draft-2">
+                    <i class="fas fa-save"></i> Salvar Rascunho
+                  </button>
+                  <button type="button" class="btn btn-secondary" id="btn-unpublish" style="display:none">
+                    <i class="fas fa-eye-slash"></i> Despublicar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Classificação IA -->
+            <div class="panel">
+              <div class="panel__header">
+                <i class="fas fa-tags"></i> Classificação IA
+              </div>
+              <div class="panel__body">
+                <div id="class-result" class="class-result-empty">
+                  <i class="fas fa-tag"></i> Não classificada
+                </div>
+                <div id="class-justification" class="class-justification" style="display:none"></div>
+                <button type="button" id="btn-classificar" class="btn btn-secondary btn-sm class-btn">
+                  <i class="fas fa-robot"></i> Classificar com IA
+                </button>
+                <input type="hidden" id="field-classification" value="">
+                <input type="hidden" id="field-classification-justification" value="">
+              </div>
+            </div>
+
+            <!-- Categoria -->
+            <div class="panel">
+              <div class="panel__header">
+                <i class="fas fa-tag"></i> Categoria
+              </div>
+              <div class="panel__body">
+                <div class="form-group">
+                  <label class="form-label">Categoria <span>*</span></label>
+                  <select id="field-category" class="form-control">
+                    <option value="">Selecione...</option>
+                  </select>
+                </div>
+                <div class="form-group" style="margin-bottom:0">
+                  <label class="form-label">Autor</label>
+                  <input type="text" id="field-author" class="form-control" placeholder="Nome do autor" value="Redação Radar Ilhéus">
+                </div>
+              </div>
+            </div>
+
+            <!-- Imagem -->
+            <div class="panel">
+              <div class="panel__header">
+                <i class="fas fa-image"></i> Imagem de Capa
+              </div>
+              <div class="panel__body">
+                <div class="img-upload-area" id="img-upload-area">
+                  <input type="file" id="img-upload-input" accept="image/*">
+                  <button type="button" class="img-clear" id="img-clear" title="Remover imagem">
+                    <i class="fas fa-times"></i>
+                  </button>
+                  <img id="img-preview" class="img-preview" alt="Prévia">
+                  <div id="img-placeholder">
+                    <div class="img-upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <div class="img-upload-text">
+                      <strong>Clique para enviar</strong> ou<br>
+                      arraste uma imagem aqui<br>
+                      <small style="color:#aaa">(máx. 2MB · JPG, PNG, WebP)</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="img-url-input">
+                  <input type="url" id="img-url-input" placeholder="Ou cole uma URL de imagem...">
+                  <button type="button" id="img-url-apply" title="Aplicar URL">OK</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Info -->
+            <div class="panel">
+              <div class="panel__header">
+                <i class="fas fa-info-circle"></i> Informações
+              </div>
+              <div class="panel__body">
+                <div class="meta-info">
+                  <div class="meta-row">
+                    <span class="meta-row__label">Criada em</span>
+                    <span class="meta-row__value" id="meta-created">—</span>
+                  </div>
+                  <div class="meta-row">
+                    <span class="meta-row__label">Atualizada</span>
+                    <span class="meta-row__value" id="meta-updated">—</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </aside>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script src="admin.js"></script>
+  <script src="gerador.js"></script>
+  <script src="classificador.js"></script>
+  <script src="monitor.js"></script>
+  <script>
+    // Sincronizar botões duplicados da sidebar
+    document.addEventListener('DOMContentLoaded', () => {
+      const pub1  = document.getElementById('btn-publish');
+      const pub2  = document.getElementById('btn-publish-2');
+      const save1 = document.getElementById('btn-save-draft');
+      const save2 = document.getElementById('btn-save-draft-2');
+      const unp   = document.getElementById('btn-unpublish');
+
+      if (pub2)  pub2.addEventListener('click',  () => pub1?.click());
+      if (save2) save2.addEventListener('click', () => save1?.click());
+
+      // Mostrar botão "Despublicar" se estiver editando publicada
+      const params = new URLSearchParams(location.search);
+      const id = params.get('id');
+      if (id) {
+        const stored = JSON.parse(localStorage.getItem('radar_articles') || '[]');
+        const art = stored.find(a => a.id === id);
+        if (art?.status === 'published' && unp) {
+          unp.style.display = 'flex';
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -62,7 +62,9 @@ app.get('/articles/:id', (req, res) => {
 
 app.post('/articles', (req, res) => {
   if (!req.body.title) return res.status(400).json({ error: 'title é obrigatório' });
+  console.log('[POST /articles] ANTES content:', String(req.body.content || '').slice(0, 120));
   const article  = buildArticle(req.body, null);
+  console.log('[POST /articles] SALVANDO content:', String(article.content || '').slice(0, 120));
   const articles = readArticles();
   articles.unshift(article);
   writeArticles(articles);
@@ -73,7 +75,9 @@ app.put('/articles/:id', (req, res) => {
   const articles = readArticles();
   const idx = articles.findIndex(a => a.id === req.params.id);
   if (idx < 0) return res.status(404).json({ error: 'not found' });
+  console.log('[PUT /articles/:id] ANTES content:', String(req.body.content || '').slice(0, 120));
   const updated = buildArticle(req.body, articles[idx]);
+  console.log('[PUT /articles/:id] SALVANDO content:', String(updated.content || '').slice(0, 120));
   articles[idx] = updated;
   writeArticles(articles);
   res.json(updated);

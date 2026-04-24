@@ -65,11 +65,13 @@ app.get('/articles', (_req, res) => {
 
 // POST /articles — criar ou atualizar (upsert por id)
 app.post('/articles', (req, res) => {
+  console.log('[POST /articles] ANTES content:', String(req.body.content || '').slice(0, 120));
   const articles = readArticles();
   const article = {
     ...req.body,
     id: req.body.id || (Date.now().toString(36) + Math.random().toString(36).slice(2, 6))
   };
+  console.log('[POST /articles] SALVANDO content:', String(article.content || '').slice(0, 120));
   const idx = articles.findIndex(a => a.id === article.id);
   if (idx >= 0) articles[idx] = article;
   else articles.unshift(article);
@@ -82,7 +84,9 @@ app.put('/articles/:id', (req, res) => {
   const articles = readArticles();
   const idx = articles.findIndex(a => a.id === req.params.id);
   if (idx < 0) return res.status(404).json({ erro: 'Notícia não encontrada.' });
+  console.log('[PUT /articles/:id] ANTES content:', String(req.body.content || '').slice(0, 120));
   articles[idx] = { ...articles[idx], ...req.body, id: req.params.id };
+  console.log('[PUT /articles/:id] SALVANDO content:', String(articles[idx].content || '').slice(0, 120));
   writeArticles(articles);
   res.json(articles[idx]);
 });

@@ -591,7 +591,7 @@
     return { urgente: 'fa-bolt', alerta: 'fa-triangle-exclamation', tendencia: 'fa-chart-line' }[tipo] || 'fa-bell';
   }
 
-  /* ── Injeção no editor ── */
+  /* ── Injeção no editor (sem auto-save) ── */
   function injetarPendingDoMonitor() {
     const raw = localStorage.getItem('radar_monitor_pending');
     if (!raw) return;
@@ -600,13 +600,13 @@
       localStorage.removeItem('radar_monitor_pending');
       if (data.titulo) {
         const el2 = document.getElementById('field-title');
-        if (el2) { el2.value = data.titulo; el2.dispatchEvent(new Event('input')); }
+        if (el2) el2.value = data.titulo;  // sem dispatchEvent — não aciona auto-save
       }
       if (data.categoria) {
         const sel = document.getElementById('field-category');
         if (sel) {
           const opt = Array.from(sel.options).find(o => o.value === data.categoria || o.text === data.categoria);
-          if (opt) { sel.value = opt.value; sel.dispatchEvent(new Event('change')); }
+          if (opt) sel.value = opt.value;  // sem dispatchEvent — não aciona auto-save
         }
       }
       if (typeof toast === 'function') toast('Sugestão do monitor carregada!', 'success');

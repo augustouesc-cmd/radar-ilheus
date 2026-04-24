@@ -1,5 +1,57 @@
 [
   {
+    "id": "mobu1diaz01x",
+    "title": "Hoje é dia de São Jorge: fé, história e tradição marcam a data em Ilhéus",
+    "subtitle": "Devotos celebram o santo guerreiro com orações, promessas e manifestações culturais na cidade",
+    "content": "<p>O dia 23 de abril é marcado pela celebração de São Jorge, um dos santos mais populares do Brasil e também reverenciado por muitos moradores de Ilhéus. Conhecido como o \"santo guerreiro\", São Jorge é símbolo de fé, coragem e proteção espiritual.</p>\n<p>A data mobiliza fiéis que realizam orações, acendem velas e participam de manifestações religiosas ao longo do dia. Em Ilhéus, a devoção se mistura com a cultura local, reunindo tradição, espiritualidade e identidade popular.</p>\n<p>Historicamente, São Jorge foi um soldado romano que, segundo a tradição cristã, se destacou por sua fé inabalável, mesmo diante de perseguições. Sua imagem mais conhecida é a de um cavaleiro enfrentando um dragão, representando a vitória do bem sobre o mal.</p>\n<p>Além do aspecto religioso, o dia também ganha significado cultural. Em diversas partes do Brasil, inclusive na Bahia, São Jorge é associado a outras tradições e expressões de fé, o que amplia ainda mais sua importância.</p>\n<p>Para muitos devotos, a data é um momento de renovação espiritual e de fortalecimento da esperança. Em Ilhéus, não é diferente: a fé em São Jorge segue viva, atravessando gerações.</p>",
+    "category": "Cultura",
+    "author": "Redação Radar Ilhéus",
+    "image": "https://picsum.photos/seed/saojorge/800/450",
+    "status": "published",
+    "views": 0,
+    "createdAt": "2026-04-23T18:46:06.754Z",
+    "updatedAt": "2026-04-24T00:00:00.000Z",
+    "publishedAt": "2026-04-23T18:46:59.690Z",
+    "time": "há 5 horas",
+    "date": "23 abr. 2026",
+    "excerpt": "O dia 23 de abril é marcado pela celebração de São Jorge, um dos santos mais populares do Brasil e também reverenciado por muitos moradores de Ilhéus.",
+    "readTime": "3 min",
+    "tags": [
+      "São Jorge",
+      "Fé",
+      "Cultura",
+      "Ilhéus"
+    ],
+    "classification": "",
+    "classificationJustification": ""
+  },
+  {
+    "id": "mobyvq3in8vz",
+    "title": "Estagiários da Educação em Ilhéus ameaçam greve por atraso no pagamento das bolsas",
+    "subtitle": "Situação gera preocupação entre estudantes, pais e instituições de ensino",
+    "content": "<p>Estagiários de instituições de ensino em Ilhéus estão enfrentando dificuldades devido ao atraso nos pagamentos de suas bolsas de estágio. Essa situação preocupante afeta a vida financeira desses jovens que dependem do apoio financeiro para seus estudos e sobrevivência.</p>\n<p>A comunidade escolar, incluindo professores, servidores e diretores, tem tentado se mobilizar para buscar uma solução rápida, consciente da importância desses estagiários para o sistema educativo local.</p>\n<p>A Secretaria de Educação afirma que a responsabilidade é do Centro de Integração Empresa Escola (CIEE), que por sua vez não assume essa responsabilidade. O fato é que os jovens estão pagando para estagiar e ameaçam paralisar suas atividades.</p>\n<p>\"Isso é um absurdo. O valor recebido é baixíssimo, deveria ser usado na passagem e na ajuda para nossos estudos, mas nem isso. Estamos pagando para trabalhar\", disparou um estagiário.</p>\n<p>\"Nossa escola falta servidores e sem os estagiários a situação ficará pior — quem sofrerá serão os alunos atípicos e seus professores\", disse uma professora.</p>\n<p>A expectativa é que as autoridades municipais se posicionem rapidamente a respeito da regularização dos pagamentos.</p>",
+    "category": "Educação",
+    "author": "Redação Radar Ilhéus",
+    "image": "https://picsum.photos/seed/estagio/800/450",
+    "status": "published",
+    "views": 0,
+    "createdAt": "2026-04-23T21:01:41.214Z",
+    "updatedAt": "2026-04-24T00:00:00.000Z",
+    "publishedAt": "2026-04-23T21:02:25.462Z",
+    "time": "há 3 horas",
+    "date": "23 abr. 2026",
+    "excerpt": "Estagiários de instituições de ensino em Ilhéus estão enfrentando dificuldades devido ao atraso nos pagamentos de suas bolsas de estágio.",
+    "readTime": "2 min",
+    "tags": [
+      "Estagiários",
+      "Educação",
+      "Greve",
+      "CIEE"
+    ],
+    "classification": "alerta",
+    "classificationJustification": "Situação de potencial paralisação que pode impactar o sistema educacional local."
+  },
+  {
     "id": "festival-chocolate-2026",
     "title": "Festival do Chocolate de Ilhéus bate recorde de visitantes na 28ª edição",
     "subtitle": "Evento registrou mais de 180 mil pessoas em cinco dias",
@@ -16,7 +68,12 @@
     "date": "23 abr. 2026",
     "excerpt": "Evento que celebra a produção cacaueira da região sul da Bahia registrou mais de 180 mil pessoas em cinco dias, superando o recorde anterior de 2023.",
     "readTime": "4 min",
-    "tags": ["Festival", "Chocolate", "Cacau", "Turismo"],
+    "tags": [
+      "Festival",
+      "Chocolate",
+      "Cacau",
+      "Turismo"
+    ],
     "classification": "positiva",
     "classificationJustification": ""
   },
@@ -37,7 +94,12 @@
     "date": "23 abr. 2026",
     "excerpt": "Pacote contempla recuperação de vias, saneamento básico em três bairros e construção de nova UPA no bairro São Caetano.",
     "readTime": "3 min",
-    "tags": ["Prefeitura", "Obras", "Infraestrutura", "Investimento"],
+    "tags": [
+      "Prefeitura",
+      "Obras",
+      "Infraestrutura",
+      "Investimento"
+    ],
     "classification": "positiva",
     "classificationJustification": ""
   },
@@ -58,7 +120,11 @@
     "date": "23 abr. 2026",
     "excerpt": "Gol nos acréscimos do segundo tempo garantiu a vitória por 2 a 1 diante de 8 mil torcedores no Estádio Mário Pessoa.",
     "readTime": "2 min",
-    "tags": ["Futebol", "Campeonato Baiano", "Ilhéus AC"],
+    "tags": [
+      "Futebol",
+      "Campeonato Baiano",
+      "Ilhéus AC"
+    ],
     "classification": "positiva",
     "classificationJustification": ""
   },
@@ -79,7 +145,12 @@
     "date": "23 abr. 2026",
     "excerpt": "Unidade terá atendimento em 12 especialidades e capacidade para 250 consultas diárias, beneficiando mais de 20 mil moradores da região.",
     "readTime": "3 min",
-    "tags": ["Saúde", "UBS", "Iguape", "Prefeitura"],
+    "tags": [
+      "Saúde",
+      "UBS",
+      "Iguape",
+      "Prefeitura"
+    ],
     "classification": "positiva",
     "classificationJustification": ""
   },
@@ -100,7 +171,12 @@
     "date": "23 abr. 2026",
     "excerpt": "Alunos do 3º ano do Colégio Estadual José Bastos representarão a Bahia na etapa internacional realizada em São Paulo em julho.",
     "readTime": "3 min",
-    "tags": ["Educação", "Matemática", "Olimpíada", "Premiação"],
+    "tags": [
+      "Educação",
+      "Matemática",
+      "Olimpíada",
+      "Premiação"
+    ],
     "classification": "positiva",
     "classificationJustification": ""
   },
@@ -121,7 +197,12 @@
     "date": "23 abr. 2026",
     "excerpt": "Cacau, madeira certificada e pescados lideraram as exportações. Terminal portuário deve receber R$ 80 milhões em modernização até 2027.",
     "readTime": "4 min",
-    "tags": ["Porto", "Exportação", "Economia", "Investimento"],
+    "tags": [
+      "Porto",
+      "Exportação",
+      "Economia",
+      "Investimento"
+    ],
     "classification": "positiva",
     "classificationJustification": ""
   },
@@ -142,7 +223,12 @@
     "date": "23 abr. 2026",
     "excerpt": "Pesquisa do Ministério do Turismo aponta crescimento de 34% na procura pela região em plataformas de hospedagem nos últimos seis meses.",
     "readTime": "3 min",
-    "tags": ["Turismo", "Praia", "Pontal", "Verão"],
+    "tags": [
+      "Turismo",
+      "Praia",
+      "Pontal",
+      "Verão"
+    ],
     "classification": "positiva",
     "classificationJustification": ""
   },
@@ -163,7 +249,12 @@
     "date": "23 abr. 2026",
     "excerpt": "São 48 vagas para cargos de nível médio e superior com salários entre R$ 2.800 e R$ 6.500. Provas estão previstas para 15 de junho.",
     "readTime": "2 min",
-    "tags": ["Concurso", "Empregos", "Câmara", "Vagas"],
+    "tags": [
+      "Concurso",
+      "Empregos",
+      "Câmara",
+      "Vagas"
+    ],
     "classification": "positiva",
     "classificationJustification": ""
   },
@@ -184,7 +275,12 @@
     "date": "23 abr. 2026",
     "excerpt": "Defesa Civil atendeu 14 ocorrências na madrugada desta quinta-feira. Rua Itabuna foi interditada após deslizamento de terra.",
     "readTime": "3 min",
-    "tags": ["Chuvas", "Alagamento", "Defesa Civil", "Zona Norte"],
+    "tags": [
+      "Chuvas",
+      "Alagamento",
+      "Defesa Civil",
+      "Zona Norte"
+    ],
     "classification": "alerta",
     "classificationJustification": ""
   },
@@ -205,7 +301,12 @@
     "date": "23 abr. 2026",
     "excerpt": "Patrimônio histórico de Ilhéus terá reabertura comemorativa em setembro com espetáculo da Orquestra Sinfônica da Bahia.",
     "readTime": "4 min",
-    "tags": ["Teatro", "Cultura", "Patrimônio", "Restauração"],
+    "tags": [
+      "Teatro",
+      "Cultura",
+      "Patrimônio",
+      "Restauração"
+    ],
     "classification": "positiva",
     "classificationJustification": ""
   }

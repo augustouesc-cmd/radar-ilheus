@@ -227,46 +227,85 @@
     });
   }
 
-  /* ── Injeção no editor (roda se estiver no editor.html) ── */
-  function injetarPendingNoEditor() {
+  /* ── Sugestão da IA no editor (NÃO injeta automaticamente) ── */
+  function mostrarSugestaoIANoEditor() {
     const raw = localStorage.getItem('radar_gen_pending');
     if (!raw) return;
 
-    try {
-      const pending = JSON.parse(raw);
+    let pending;
+    try { pending = JSON.parse(raw); } catch { localStorage.removeItem('radar_gen_pending'); return; }
+    if (!pending.titulo && !pending.subtitulo && !pending.conteudo) {
+      localStorage.removeItem('radar_gen_pending');
+      return;
+    }
+
+    // Mostra barra de aviso — usuário decide se aplica
+    const bar = document.createElement('div');
+    bar.id = 'ia-pending-bar';
+    bar.style.cssText = [
+      'background:#fffbeb',
+      'border:1px solid #f59e0b',
+      'border-radius:8px',
+      'padding:12px 16px',
+      'margin-bottom:16px',
+      'display:flex',
+      'align-items:center',
+      'gap:12px',
+      'flex-wrap:wrap',
+      'font-size:.85rem'
+    ].join(';');
+    bar.innerHTML = `
+      <i class="fas fa-robot" style="color:#f59e0b;font-size:1.1rem;flex-shrink:0"></i>
+      <span style="flex:1"><strong>Sugestão da IA disponível.</strong> O conteúdo gerado NÃO foi aplicado. Clique em "Aplicar" para usar, ou descarte.</span>
+      <button type="button" id="btn-ia-aplicar" class="btn btn-secondary btn-sm" style="border-color:#f59e0b;color:#92400e;white-space:nowrap">
+        <i class="fas fa-check"></i> Aplicar sugestão
+      </button>
+      <button type="button" id="btn-ia-descartar" class="btn btn-secondary btn-sm" style="white-space:nowrap">
+        <i class="fas fa-times"></i> Descartar
+      </button>`;
+
+    const form = document.getElementById('editor-form');
+    if (form) form.insertBefore(bar, form.firstChild);
+
+    document.getElementById('btn-ia-descartar').addEventListener('click', () => {
+      localStorage.removeItem('radar_gen_pending');
+      bar.remove();
+    });
+
+    document.getElementById('btn-ia-aplicar').addEventListener('click', () => {
       localStorage.removeItem('radar_gen_pending');
 
+      // Aplica sem disparar eventos de input (evita auto-save acidental)
       if (pending.titulo) {
         const el = document.getElementById('field-title');
-        if (el) { el.value = pending.titulo; el.dispatchEvent(new Event('input')); }
+        if (el) el.value = pending.titulo;
       }
       if (pending.subtitulo) {
         const el = document.getElementById('field-subtitle');
-        if (el) { el.value = pending.subtitulo; el.dispatchEvent(new Event('input')); }
+        if (el) el.value = pending.subtitulo;
       }
       if (pending.conteudo) {
         const el = document.getElementById('editor-content');
         if (el) {
-          // Converter quebras de linha em parágrafos HTML
           const html = pending.conteudo
             .split(/\n\n+/)
             .map(p => `<p>${p.trim().replace(/\n/g, '<br>')}</p>`)
             .join('');
           el.innerHTML = html;
-          el.dispatchEvent(new Event('input'));
         }
       }
 
-      showToast('Campos preenchidos com o conteúdo da IA!', 'success');
-    } catch { /* ignora */ }
+      bar.remove();
+      showToast('Sugestão aplicada. Revise e salve manualmente quando quiser.', 'success');
+    });
   }
 
-  // Executar injeção se estiver no editor
+  // Exibir barra de sugestão quando o editor carregar (sem injeção automática)
   if (document.getElementById('editor-content')) {
-    document.addEventListener('DOMContentLoaded', injetarPendingNoEditor);
-    // Tentar também após um pequeno delay (caso o admin.js já tenha rodado DOMContentLoaded)
-    if (document.readyState !== 'loading') {
-      setTimeout(injetarPendingNoEditor, 300);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', mostrarSugestaoIANoEditor);
+    } else {
+      setTimeout(mostrarSugestaoIANoEditor, 350);
     }
   }
 

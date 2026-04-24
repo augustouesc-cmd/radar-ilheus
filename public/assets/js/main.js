@@ -17,6 +17,7 @@ async function loadArticles() {
       return articles.map((a, i) => ({
         id:           a.id,
         title:        a.title,
+        content:      a.content   || '',
         excerpt:      a.excerpt || (a.content || '').replace(/<[^>]*>/g, '').slice(0, 200),
         category:     a.category,
         categorySlug: (a.category || '').toLowerCase()
@@ -449,23 +450,9 @@ function buildArticlePage() {
       <p class="article-img-caption"><i class="fas fa-camera"></i> Foto: ${article.author} / Radar Ilhéus</p>
 
       <div class="article-body">
-        <p>${article.excerpt} A informação foi confirmada nesta ${new Date().toLocaleDateString('pt-BR', {weekday: 'long'})} pela assessoria de comunicação responsável pelo evento.</p>
-
-        <p>De acordo com fontes oficiais, o impacto direto na região já começa a ser sentido pela população ilheense. "É um momento histórico para a cidade. Trabalhamos muito para que isso fosse possível", afirmou o responsável pelo projeto durante coletiva de imprensa realizada no centro da cidade.</p>
-
-        <h2>O que muda para a população</h2>
-
-        <p>A novidade traz impactos positivos para os moradores de Ilhéus e municípios vizinhos. Especialistas consultados pelo Radar Ilhéus destacam a importância da iniciativa para o desenvolvimento regional e a melhoria da qualidade de vida.</p>
-
-        <blockquote>"Essa é uma das melhores notícias que Ilhéus recebeu nos últimos anos. O impacto vai ser sentido em toda a cadeia produtiva local." — Especialista Regional</blockquote>
-
-        <p>As próximas etapas já estão planejadas e serão executadas ao longo dos próximos meses. A expectativa é que os resultados completos sejam visíveis ainda no segundo semestre de 2026.</p>
-
-        <h2>Próximos passos</h2>
-
-        <p>Reuniões de acompanhamento estão agendadas para as próximas semanas. O Radar Ilhéus acompanhará de perto todos os desdobramentos e trará informações atualizadas conforme o projeto avança.</p>
-
-        <p>Para mais informações, a população pode acessar os canais oficiais ou entrar em contato diretamente com os responsáveis através dos telefones disponibilizados pela assessoria de comunicação.</p>
+        ${article.content
+          ? article.content
+          : `<p>${article.excerpt || ''}</p>`}
       </div>
 
       <div class="article-tags">

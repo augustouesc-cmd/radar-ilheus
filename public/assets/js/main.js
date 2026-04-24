@@ -10,24 +10,29 @@ let ARTICLES   = [];   // preenchido via API no DOMContentLoaded
 
 async function loadArticles() {
   try {
-    const res = await fetch(`${API_BASE}/articles`);
+    const res = await fetch('/api/noticias');
     if (!res.ok) throw new Error('offline');
-    const all = await res.json();
-    const published = all.filter(a => a.status === 'published');
-    if (published.length > 0) {
-      const apiArticles = published.map(a => ({
-        ...a,
-        categorySlug: (a.category || '').toLowerCase()
+    const noticias = await res.json();
+    if (noticias.length > 0) {
+      return noticias.map((n, i) => ({
+        id:           n.id,
+        title:        n.titulo,
+        excerpt:      n.conteudo,
+        category:     n.categoria,
+        categorySlug: (n.categoria || '').toLowerCase()
           .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
           .replace(/\s+/g, '-'),
-        time:       a.time  || 'recentemente',
-        date:       a.date  || new Date(a.publishedAt || a.createdAt).toLocaleDateString('pt-BR'),
-        readTime:   a.readTime || '3 min',
-        views:      a.views || 0,
-        imageThumb: a.image || '',
-        tags:       a.tags  || []
+        author:       n.autor     || 'Redação',
+        time:         'recentemente',
+        date:         n.data,
+        readTime:     '3 min',
+        views:        n.visualizacoes || 0,
+        image:        n.imagem    || `https://picsum.photos/seed/${n.id}/800/450`,
+        imageThumb:   n.imagem    || `https://picsum.photos/seed/${n.id}/400/250`,
+        tags:         n.tags      || [],
+        featured:     i === 0,
+        breaking:     false
       }));
-      return [...apiArticles, ...DEFAULT_ARTICLES];
     }
   } catch { /* servidor offline — usa padrão */ }
   return DEFAULT_ARTICLES;
@@ -399,8 +404,8 @@ function buildArticlePage() {
   if (!container) return;
 
   const params = new URLSearchParams(location.search);
-  const id = parseInt(params.get('id')) || 1;
-  const article = ARTICLES.find(a => a.id === id) || ARTICLES[0];
+  const id = params.get('id') || '';
+  const article = ARTICLES.find(a => String(a.id) === String(id)) || ARTICLES[0];
 
   document.title = `${article.title} — Radar Ilhéus`;
 

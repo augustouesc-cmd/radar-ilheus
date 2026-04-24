@@ -1,0 +1,82 @@
+[
+  {
+    "id": "festival-chocolate-2026",
+    "titulo": "Festival do Chocolate de Ilhéus bate recorde de visitantes na 28ª edição",
+    "categoria": "Cultura",
+    "imagem": "https://picsum.photos/seed/choc1/800/450",
+    "data": "2026-04-23",
+    "conteudo": "Evento que celebra a produção cacaueira da região sul da Bahia registrou mais de 180 mil pessoas em cinco dias, superando o recorde anterior de 2023."
+  },
+  {
+    "id": "obras-infraestrutura-2026",
+    "titulo": "Prefeitura anuncia R$ 42 milhões em obras de infraestrutura para 2026",
+    "categoria": "Política",
+    "imagem": "https://picsum.photos/seed/obras2/800/450",
+    "data": "2026-04-23",
+    "conteudo": "Pacote contempla recuperação de vias, saneamento básico em três bairros e construção de nova UPA no bairro São Caetano."
+  },
+  {
+    "id": "ilheus-ac-semifinal",
+    "titulo": "Ilhéus Atlético Clube vence o Bahia de Feira e avança às semifinais",
+    "categoria": "Esportes",
+    "imagem": "https://picsum.photos/seed/futebol3/800/450",
+    "data": "2026-04-23",
+    "conteudo": "Gol nos acréscimos do segundo tempo garantiu a vitória por 2 a 1 diante de 8 mil torcedores no Estádio Mário Pessoa."
+  },
+  {
+    "id": "ubs-iguape-inauguracao",
+    "titulo": "Nova UBS do bairro Iguape começa a funcionar na próxima segunda-feira",
+    "categoria": "Saúde",
+    "imagem": "https://picsum.photos/seed/saude4/800/450",
+    "data": "2026-04-23",
+    "conteudo": "Unidade terá atendimento em 12 especialidades e capacidade para 250 consultas diárias, beneficiando mais de 20 mil moradores da região."
+  },
+  {
+    "id": "olimpiada-matematica-estadual",
+    "titulo": "Escola estadual de Ilhéus conquista 1º lugar em olimpíada nacional de matemática",
+    "categoria": "Educação",
+    "imagem": "https://picsum.photos/seed/escola5/800/450",
+    "data": "2026-04-23",
+    "conteudo": "Alunos do 3º ano do Colégio Estadual José Bastos representarão a Bahia na etapa internacional realizada em São Paulo em julho."
+  },
+  {
+    "id": "porto-exportacoes-q1",
+    "titulo": "Porto de Ilhéus registra crescimento de 22% no volume de exportações no 1º trimestre",
+    "categoria": "Economia",
+    "imagem": "https://picsum.photos/seed/porto6/800/450",
+    "data": "2026-04-23",
+    "conteudo": "Cacau, madeira certificada e pescados lideraram as exportações. Terminal portuário deve receber R$ 80 milhões em modernização até 2027."
+  },
+  {
+    "id": "pontal-turismo-top10",
+    "titulo": "Pontal do Ilhéus entra na lista dos 10 destinos mais procurados da Bahia no verão",
+    "categoria": "Turismo",
+    "imagem": "https://picsum.photos/seed/praia7/800/450",
+    "data": "2026-04-23",
+    "conteudo": "Pesquisa do Ministério do Turismo aponta crescimento de 34% na procura pela região em plataformas de hospedagem nos últimos seis meses."
+  },
+  {
+    "id": "concurso-camara-municipal",
+    "titulo": "Concurso público da Câmara Municipal de Ilhéus tem inscrições abertas até 30 de abril",
+    "categoria": "Empregos",
+    "imagem": "https://picsum.photos/seed/concurso8/800/450",
+    "data": "2026-04-23",
+    "conteudo": "São 48 vagas para cargos de nível médio e superior com salários entre R$ 2.800 e R$ 6.500. Provas estão previstas para 15 de junho."
+  },
+  {
+    "id": "chuvas-alagamentos-zona-norte",
+    "titulo": "Chuvas intensas causam alagamentos em bairros da zona norte de Ilhéus",
+    "categoria": "Cidades",
+    "imagem": "https://picsum.photos/seed/chuva9/800/450",
+    "data": "2026-04-23",
+    "conteudo": "Defesa Civil atendeu 14 ocorrências na madrugada desta quinta-feira. Rua Itabuna foi interditada após deslizamento de terra."
+  },
+  {
+    "id": "theatro-municipal-restauracao",
+    "titulo": "Obra do Theatro Municipal entra em fase final após dois anos de restauração",
+    "categoria": "Cultura",
+    "imagem": "https://picsum.photos/seed/theatro10/800/450",
+    "data": "2026-04-23",
+    "conteudo": "Patrimônio histórico de Ilhéus terá reabertura comemorativa em setembro com espetáculo da Orquestra Sinfônica da Bahia."
+  }
+]

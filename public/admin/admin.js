@@ -167,13 +167,13 @@ function initDashboard() {
   const tableBody = document.getElementById('articles-tbody');
   if (!statsRow && !tableBody) return;
 
-  renderStats();
-  renderTable();
-
-  // Filtros
+  // Filtros — declarados antes de renderStats/renderTable para evitar TDZ
   const searchInput = document.getElementById('filter-search');
   const categoryFilter = document.getElementById('filter-category');
   const statusFilter = document.getElementById('filter-status');
+
+  renderStats();
+  renderTable();
 
   [searchInput, categoryFilter, statusFilter].forEach(el => {
     if (el) el.addEventListener('input', renderTable);

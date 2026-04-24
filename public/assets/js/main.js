@@ -12,24 +12,24 @@ async function loadArticles() {
   try {
     const res = await fetch('/api/noticias');
     if (!res.ok) throw new Error('offline');
-    const noticias = await res.json();
-    if (noticias.length > 0) {
-      return noticias.map((n, i) => ({
-        id:           n.id,
-        title:        n.titulo,
-        excerpt:      n.conteudo,
-        category:     n.categoria,
-        categorySlug: (n.categoria || '').toLowerCase()
+    const articles = await res.json();
+    if (articles.length > 0) {
+      return articles.map((a, i) => ({
+        id:           a.id,
+        title:        a.title,
+        excerpt:      a.excerpt || (a.content || '').replace(/<[^>]*>/g, '').slice(0, 200),
+        category:     a.category,
+        categorySlug: (a.category || '').toLowerCase()
           .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
           .replace(/\s+/g, '-'),
-        author:       n.autor     || 'Redação',
-        time:         'recentemente',
-        date:         n.data,
-        readTime:     '3 min',
-        views:        n.visualizacoes || 0,
-        image:        n.imagem    || `https://picsum.photos/seed/${n.id}/800/450`,
-        imageThumb:   n.imagem    || `https://picsum.photos/seed/${n.id}/400/250`,
-        tags:         n.tags      || [],
+        author:       a.author    || 'Redação',
+        time:         a.time      || 'recentemente',
+        date:         a.date      || (a.publishedAt || '').slice(0, 10),
+        readTime:     a.readTime  || '3 min',
+        views:        a.views     || 0,
+        image:        a.image     || `https://picsum.photos/seed/${a.id}/800/450`,
+        imageThumb:   a.image     || `https://picsum.photos/seed/${a.id}/400/250`,
+        tags:         a.tags      || [],
         featured:     i === 0,
         breaking:     false
       }));

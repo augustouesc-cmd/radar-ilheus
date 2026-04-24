@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicar Notícia — Radar Ilhéus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .admin-wrap {
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 0 16px 60px;
+    }
+    .admin-card {
+      background: var(--color-surface, #fff);
+      border: 1px solid var(--color-border, #e5e7eb);
+      border-radius: 8px;
+      padding: 32px;
+    }
+    .admin-card h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      margin: 0 0 28px;
+    }
+    .admin-card h1 span { color: #E30613; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--color-text-secondary, #6b7280);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--color-border, #e5e7eb);
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: .95rem;
+      background: #fff;
+      color: var(--color-text, #111);
+      box-sizing: border-box;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #E30613;
+    }
+    .form-group textarea { resize: vertical; min-height: 160px; }
+    #btn-publicar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #E30613;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 28px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    #btn-publicar:hover { background: #b8000e; }
+    #btn-publicar:disabled { background: #ccc; cursor: not-allowed; }
+    #status-msg {
+      margin-top: 16px;
+      font-size: .9rem;
+      font-weight: 600;
+      display: none;
+    }
+    #status-msg.ok  { color: #16a34a; }
+    #status-msg.err { color: #dc2626; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="site-logo">
+        <span class="site-logo__radar">RADAR<span>●</span></span>
+        <span class="site-logo__sub">Ilhéus & Região</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="admin-wrap">
+    <div class="admin-card">
+      <h1><i class="fas fa-pen-nib"></i> Publicar <span>Notícia</span></h1>
+
+      <form id="form-noticia" novalidate>
+
+        <div class="form-group">
+          <label for="titulo">Título</label>
+          <input type="text" id="titulo" name="titulo" placeholder="Digite o título da notícia" required>
+        </div>
+
+        <div class="form-group">
+          <label for="categoria">Categoria</label>
+          <select id="categoria" name="categoria" required>
+            <option value="">Selecione...</option>
+            <option value="Política">Política</option>
+            <option value="Economia">Economia</option>
+            <option value="Esportes">Esportes</option>
+            <option value="Cultura">Cultura</option>
+            <option value="Saúde">Saúde</option>
+            <option value="Educação">Educação</option>
+            <option value="Turismo">Turismo</option>
+            <option value="Cidades">Cidades</option>
+            <option value="Empregos">Empregos</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="conteudo">Conteúdo</label>
+          <textarea id="conteudo" name="conteudo" placeholder="Escreva o conteúdo da notícia..." required></textarea>
+        </div>
+
+        <button type="submit" id="btn-publicar">
+          <i class="fas fa-paper-plane"></i> Publicar
+        </button>
+
+        <p id="status-msg"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

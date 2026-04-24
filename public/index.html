@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Radar Ilhéus — O portal de notícias em tempo real de Ilhéus e região sul da Bahia.">
+  <meta property="og:title" content="Radar Ilhéus — Notícias em Tempo Real">
+  <meta property="og:description" content="As últimas notícias de Ilhéus e região sul da Bahia.">
+  <meta property="og:type" content="website">
+  <title>Radar Ilhéus — Notícias em Tempo Real</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===================== TOP BAR ===================== -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar__date">
+        <i class="fas fa-calendar-alt"></i>
+        <span class="topbar-datetime">Carregando...</span>
+      </div>
+      <div class="top-bar__right">
+        <div class="top-bar__weather">
+          <i class="fas fa-sun" style="color:#F5B400"></i>
+          <strong>28°C</strong>&nbsp;Ilhéus
+        </div>
+        <div class="top-bar__socials">
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="site-logo">
+        <span class="site-logo__radar">RADAR<span>●</span></span>
+        <span class="site-logo__sub">Ilhéus & Região</span>
+      </a>
+
+      <form class="header-search" role="search">
+        <input type="search" placeholder="Buscar notícias..." aria-label="Buscar notícias">
+        <button type="submit" aria-label="Buscar"><i class="fas fa-search"></i></button>
+      </form>
+
+      <button class="btn-menu" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav class="site-nav" aria-label="Categorias">
+    <div class="container">
+      <ul class="nav-list" role="list"></ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="nav-mobile-overlay" role="dialog" aria-label="Menu mobile">
+    <button class="nav-mobile-close" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
+    <nav class="nav-mobile-list"></nav>
+  </div>
+
+  <!-- ===================== BREAKING NEWS ===================== -->
+  <div class="breaking-bar" aria-live="polite">
+    <div class="breaking-bar__label">
+      <span class="badge-live">AO VIVO</span>
+      URGENTE
+    </div>
+    <div class="breaking-bar__track">
+      <div class="breaking-bar__items"></div>
+    </div>
+  </div>
+
+  <!-- ===================== MAIN ===================== -->
+  <main>
+    <div class="container">
+
+      <!-- DESTAQUE PRINCIPAL -->
+      <section class="hero" aria-label="Destaque principal">
+        <div class="hero-grid">
+          <article class="hero-main" aria-label="Notícia em destaque"></article>
+          <div class="hero-side"></div>
+        </div>
+      </section>
+
+      <!-- ÚLTIMAS NOTÍCIAS -->
+      <section class="latest-news" aria-label="Últimas notícias">
+        <h2 class="section-title">
+          Últimas Notícias
+          <span class="badge-live">AO VIVO</span>
+        </h2>
+        <div class="latest-grid"></div>
+      </section>
+
+      <!-- CONTEÚDO + SIDEBAR -->
+      <div class="content-sidebar">
+
+        <!-- NOTÍCIAS LOCAIS -->
+        <section class="local-news" aria-label="Notícias locais">
+          <h2 class="section-title">
+            Notícias Locais
+            <a href="categoria.html?c=cidades" class="count">Ver todas</a>
+          </h2>
+          <div class="local-grid"></div>
+        </section>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" aria-label="Mais lidas e newsletter">
+
+          <!-- Mais Lidas -->
+          <div class="sidebar-block">
+            <div class="sidebar-block__header">
+              <h3><i class="fas fa-fire"></i> Mais Lidas</h3>
+            </div>
+            <div class="sidebar-block__body">
+              <ul class="most-read-list"></ul>
+            </div>
+          </div>
+
+          <!-- Newsletter -->
+          <div class="sidebar-block">
+            <div class="sidebar-block__header">
+              <h3><i class="fas fa-envelope"></i> Newsletter</h3>
+            </div>
+            <div class="sidebar-block__body">
+              <div class="newsletter-block">
+                <p>Receba as principais notícias de Ilhéus diretamente no seu e-mail, todo dia às 7h.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Inscrição realizada com sucesso!')">
+                  <input type="email" placeholder="seu@email.com" required aria-label="E-mail">
+                  <button type="submit" class="btn-subscribe">
+                    <i class="fas fa-paper-plane"></i> Quero receber
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer" aria-label="Rodapé">
+    <div class="container">
+      <div class="footer-main">
+
+        <div class="footer-brand">
+          <div class="footer-logo">RADAR<span>●</span></div>
+          <p>O portal de notícias em tempo real de Ilhéus e região sul da Bahia. Informação rápida, precisa e comprometida com a verdade.</p>
+          <div class="footer-socials">
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Editorias</h4>
+          <ul>
+            <li><a href="categoria.html?c=politica">Política</a></li>
+            <li><a href="categoria.html?c=economia">Economia</a></li>
+            <li><a href="categoria.html?c=esportes">Esportes</a></li>
+            <li><a href="categoria.html?c=cultura">Cultura</a></li>
+            <li><a href="categoria.html?c=saude">Saúde</a></li>
+            <li><a href="categoria.html?c=educacao">Educação</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Portal</h4>
+          <ul>
+            <li><a href="#">Sobre o Radar Ilhéus</a></li>
+            <li><a href="#">Redação</a></li>
+            <li><a href="#">Publicidade</a></li>
+            <li><a href="#">Fale Conosco</a></li>
+            <li><a href="#">Envie sua Pauta</a></li>
+            <li><a href="#">Newsletter</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Política de Privacidade</a></li>
+            <li><a href="#">Termos de Uso</a></li>
+            <li><a href="#">Política de Cookies</a></li>
+            <li><a href="#">Código de Ética</a></li>
+            <li><a href="#">Correções</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 <strong>Radar Ilhéus</strong>. Todos os direitos reservados.</span>
+        <span>Ilhéus, Bahia — Brasil</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" aria-label="Voltar ao topo">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

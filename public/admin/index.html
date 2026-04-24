@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Notícias — Radar Ilhéus Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- Botão toggle mobile -->
+  <button class="sidebar-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+
+  <!-- ====== SIDEBAR ====== -->
+  <aside class="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__logo">RADAR<span>●</span></div>
+      <div class="sidebar__sub">Admin</div>
+    </div>
+
+    <nav class="sidebar__nav">
+      <div class="nav-section">Conteúdo</div>
+      <a href="index.html" class="nav-item active">
+        <i class="fas fa-newspaper"></i> Notícias
+        <span class="badge" id="nav-draft-count">0</span>
+      </a>
+      <a href="editor.html" class="nav-item">
+        <i class="fas fa-plus-circle"></i> Nova Notícia
+      </a>
+      <a href="gerador.html" class="nav-item">
+        <i class="fas fa-robot"></i> Gerador IA
+      </a>
+      <a href="social.html" class="nav-item">
+        <i class="fab fa-instagram"></i> Redes Sociais
+      </a>
+      <a href="monitor.html" class="nav-item">
+        <i class="fas fa-chart-line"></i> Monitor
+      </a>
+
+      <div class="nav-section" style="margin-top:8px">Portal</div>
+      <a href="../index.html" target="_blank" class="nav-item">
+        <i class="fas fa-external-link-alt"></i> Ver Portal
+      </a>
+    </nav>
+
+    <div class="sidebar__footer">
+      <div style="margin-bottom:4px;color:rgba(255,255,255,.55);font-size:.75rem">
+        <i class="fas fa-circle" style="color:#16a34a;font-size:.5rem"></i>
+        &nbsp;Radar Ilhéus
+      </div>
+      <a href="../index.html">← Voltar ao portal</a>
+    </div>
+  </aside>
+
+  <!-- ====== MAIN ====== -->
+  <div class="main-wrapper">
+
+    <!-- Header -->
+    <header class="top-header">
+      <div class="top-header__left">
+        <h1 class="top-header__title">Painel de Notícias</h1>
+      </div>
+      <div class="top-header__actions">
+        <a href="editor.html" class="btn btn-primary">
+          <i class="fas fa-plus"></i> Nova Notícia
+        </a>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="page-content">
+
+      <!-- Stats -->
+      <div class="stats-row" id="stats-row"></div>
+
+      <!-- Lista de notícias -->
+      <div class="card-panel">
+        <div class="card-panel__header">
+          <h2><i class="fas fa-list" style="color:var(--blue);margin-right:6px"></i> Todas as Notícias</h2>
+          <div class="search-filter">
+            <input type="search" class="filter-input" id="filter-search" placeholder="Buscar notícia...">
+            <select class="filter-select" id="filter-category">
+              <option value="">Todas as categorias</option>
+              <option>Política</option>
+              <option>Economia</option>
+              <option>Esportes</option>
+              <option>Cultura</option>
+              <option>Saúde</option>
+              <option>Educação</option>
+              <option>Turismo</option>
+              <option>Cidades</option>
+              <option>Empregos</option>
+              <option>Tecnologia</option>
+            </select>
+            <select class="filter-select" id="filter-status">
+              <option value="">Todos os status</option>
+              <option value="published">Publicadas</option>
+              <option value="draft">Rascunhos</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:72px">Imagem</th>
+                <th>Título</th>
+                <th style="width:130px">Categoria</th>
+                <th style="width:120px">Status</th>
+                <th style="width:130px">Atualizada</th>
+                <th style="width:100px">Views</th>
+                <th style="width:200px">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="articles-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal confirm -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <h3 id="modal-title"></h3>
+      <p id="modal-msg"></p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary btn-sm" id="modal-cancel">Cancelar</button>
+        <button class="btn btn-primary btn-sm" id="modal-confirm">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script src="admin.js"></script>
+  <script>
+    // Atualizar badge de rascunhos na sidebar
+    document.addEventListener('DOMContentLoaded', () => {
+      const badge = document.getElementById('nav-draft-count');
+      const updateBadge = () => {
+        const stats = JSON.parse(localStorage.getItem('radar_articles') || '[]');
+        const drafts = stats.filter(a => a.status === 'draft').length;
+        if (badge) badge.textContent = drafts;
+        if (badge) badge.style.display = drafts ? 'inline-block' : 'none';
+      };
+      updateBadge();
+      window.addEventListener('storage', updateBadge);
+    });
+  </script>
+</body>
+</html>

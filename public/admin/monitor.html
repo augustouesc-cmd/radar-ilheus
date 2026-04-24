@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitor de Tendências — Radar Ilhéus Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="monitor.css">
+</head>
+<body>
+
+  <button class="sidebar-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+
+  <!-- ====== SIDEBAR ====== -->
+  <aside class="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__logo">RADAR<span>●</span></div>
+      <div class="sidebar__sub">Admin</div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="nav-section">Conteúdo</div>
+      <a href="index.html" class="nav-item"><i class="fas fa-newspaper"></i> Notícias</a>
+      <a href="editor.html" class="nav-item"><i class="fas fa-plus-circle"></i> Nova Notícia</a>
+      <a href="gerador.html" class="nav-item"><i class="fas fa-robot"></i> Gerador IA</a>
+      <a href="social.html" class="nav-item"><i class="fab fa-instagram"></i> Redes Sociais</a>
+      <a href="monitor.html" class="nav-item active"><i class="fas fa-chart-line"></i> Monitor</a>
+      <div class="nav-section" style="margin-top:8px">Portal</div>
+      <a href="../index.html" target="_blank" class="nav-item"><i class="fas fa-external-link-alt"></i> Ver Portal</a>
+    </nav>
+    <div class="sidebar__footer">
+      <div style="margin-bottom:4px;color:rgba(255,255,255,.55);font-size:.75rem">
+        <i class="fas fa-circle" id="monitor-sidebar-pulse" style="color:#6b7280;font-size:.5rem"></i>
+        &nbsp;<span id="monitor-sidebar-label">Monitor offline</span>
+      </div>
+      <a href="index.html">← Todas as notícias</a>
+    </div>
+  </aside>
+
+  <!-- ====== MAIN ====== -->
+  <div class="main-wrapper">
+
+    <!-- Header -->
+    <header class="top-header">
+      <div class="top-header__left">
+        <nav class="breadcrumb-admin">
+          <a href="index.html">Admin</a>
+          <i class="fas fa-chevron-right" style="font-size:.6rem"></i>
+          <span>Monitor de Tendências</span>
+        </nav>
+      </div>
+      <div class="top-header__actions">
+        <div class="monitor-live-badge" id="monitor-live-badge">
+          <span class="monitor-live-dot" id="monitor-live-dot"></span>
+          <span id="monitor-live-label">Aguardando</span>
+        </div>
+        <select class="filter-select" id="monitor-interval" title="Intervalo de atualização">
+          <option value="0">Manual</option>
+          <option value="30">30 segundos</option>
+          <option value="60">1 minuto</option>
+          <option value="300">5 minutos</option>
+        </select>
+        <button class="btn btn-primary" id="btn-verificar">
+          <i class="fas fa-satellite-dish"></i> Verificar Agora
+        </button>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="page-content">
+
+      <!-- Status bar -->
+      <div class="monitor-status-bar" id="monitor-status-bar">
+        <div class="msb-left">
+          <i class="fas fa-satellite-dish"></i>
+          <span id="msb-msg">Clique em "Verificar Agora" para iniciar o monitoramento de tendências.</span>
+        </div>
+        <div class="msb-right" id="msb-meta" style="display:none">
+          <span><i class="fas fa-signal"></i> <span id="msb-sinais">—</span> sinais</span>
+          <span><i class="fas fa-clock"></i> <span id="msb-time">—</span></span>
+          <span id="msb-next-wrap" style="display:none"><i class="fas fa-rotate"></i> próximo em <span id="msb-next">—</span></span>
+        </div>
+      </div>
+
+      <!-- Layout principal -->
+      <div class="monitor-layout">
+
+        <!-- Coluna principal: tendências + sugestões -->
+        <div class="monitor-main">
+
+          <!-- Tendências -->
+          <div class="monitor-section">
+            <div class="monitor-section__header">
+              <h2><i class="fas fa-fire"></i> Tendências Detectadas</h2>
+              <span class="monitor-section__sub" id="tendencias-sub">—</span>
+            </div>
+            <div id="tendencias-container" class="tendencias-grid">
+              <!-- Estado inicial -->
+              <div class="monitor-empty" id="tendencias-empty">
+                <i class="fas fa-chart-line"></i>
+                <span>Nenhuma tendência detectada ainda</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sugestões de notícias -->
+          <div class="monitor-section" style="margin-top:24px">
+            <div class="monitor-section__header">
+              <h2><i class="fas fa-lightbulb"></i> Notícias Sugeridas pela IA</h2>
+              <span class="monitor-section__sub" id="sugestoes-sub">—</span>
+            </div>
+            <div id="sugestoes-container" class="sugestoes-grid">
+              <div class="monitor-empty" id="sugestoes-empty">
+                <i class="fas fa-lightbulb"></i>
+                <span>Sugestões aparecerão após a análise</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar direita: alertas + histórico -->
+        <aside class="monitor-sidebar-right">
+
+          <!-- Alertas ativos -->
+          <div class="panel">
+            <div class="panel__header" id="alertas-header">
+              <i class="fas fa-bell"></i> Alertas Ativos
+              <span class="badge" id="alertas-badge" style="display:none"></span>
+            </div>
+            <div class="panel__body" id="alertas-container" style="padding:0">
+              <div class="monitor-empty" id="alertas-empty" style="padding:20px">
+                <i class="fas fa-bell-slash"></i>
+                <span>Sem alertas no momento</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Histórico de notificações -->
+          <div class="panel">
+            <div class="panel__header">
+              <i class="fas fa-history"></i> Histórico de Alertas
+              <button type="button" id="btn-limpar-historico" class="notif-clear-btn" title="Limpar histórico">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+            <div class="panel__body" style="padding:0">
+              <div id="notif-history" class="notif-history">
+                <div class="monitor-empty" id="notif-empty" style="padding:20px">
+                  <i class="fas fa-inbox"></i>
+                  <span>Nenhum alerta enviado ainda</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+
+      <!-- Loading overlay -->
+      <div class="monitor-loading-overlay" id="monitor-loading" style="display:none">
+        <div class="monitor-loading-box">
+          <div class="monitor-loading-icon">
+            <i class="fas fa-satellite-dish fa-spin"></i>
+          </div>
+          <div class="monitor-loading-title">Monitorando tendências...</div>
+          <div class="monitor-loading-sub" id="loading-sub-msg">Coletando sinais em tempo real</div>
+          <div class="monitor-loading-steps" id="loading-steps">
+            <div class="loading-step" id="step-1"><i class="fas fa-circle-notch fa-spin"></i> Analisando sinais</div>
+            <div class="loading-step loading-step--wait" id="step-2"><i class="fas fa-circle"></i> Identificando tendências</div>
+            <div class="loading-step loading-step--wait" id="step-3"><i class="fas fa-circle"></i> Gerando sugestões</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal: simulação de envio de alerta -->
+  <div class="modal-overlay" id="modal-send-alert">
+    <div class="modal modal-alert-send">
+      <div class="modal-alert-icon" id="modal-alert-icon"><i class="fas fa-bell"></i></div>
+      <h3 id="modal-alert-title">Enviando alerta...</h3>
+      <p id="modal-alert-desc"></p>
+      <div class="send-channels" id="send-channels">
+        <div class="send-channel" id="ch-browser"><i class="fas fa-desktop"></i> Notificação do navegador<span class="send-status">—</span></div>
+        <div class="send-channel" id="ch-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp da redação<span class="send-status">—</span></div>
+        <div class="send-channel" id="ch-email"><i class="fas fa-envelope"></i> E-mail da equipe<span class="send-status">—</span></div>
+        <div class="send-channel" id="ch-push"><i class="fas fa-mobile-alt"></i> Push mobile<span class="send-status">—</span></div>
+      </div>
+      <button class="btn btn-primary" id="modal-alert-close" style="margin-top:16px;width:100%">
+        <i class="fas fa-check"></i> Entendido
+      </button>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script src="admin.js"></script>
+  <script src="monitor.js"></script>
+</body>
+</html>

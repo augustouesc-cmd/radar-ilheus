@@ -1,0 +1,12 @@
+[
+  { "id": "geral",     "name": "Geral",     "slug": "geral",     "icon": "fa-tag",            "active": true },
+  { "id": "politica",  "name": "Política",  "slug": "politica",  "icon": "fa-landmark",      "active": true },
+  { "id": "economia",  "name": "Economia",  "slug": "economia",  "icon": "fa-chart-line",     "active": true },
+  { "id": "esportes",  "name": "Esportes",  "slug": "esportes",  "icon": "fa-futbol",         "active": true },
+  { "id": "cultura",   "name": "Cultura",   "slug": "cultura",   "icon": "fa-theater-masks",  "active": true },
+  { "id": "saude",     "name": "Saúde",     "slug": "saude",     "icon": "fa-heartbeat",      "active": true },
+  { "id": "educacao",  "name": "Educação",  "slug": "educacao",  "icon": "fa-graduation-cap", "active": true },
+  { "id": "turismo",   "name": "Turismo",   "slug": "turismo",   "icon": "fa-umbrella-beach", "active": true },
+  { "id": "cidades",   "name": "Cidades",   "slug": "cidades",   "icon": "fa-city",           "active": true },
+  { "id": "empregos",  "name": "Empregos",  "slug": "empregos",  "icon": "fa-briefcase",      "active": true }
+]

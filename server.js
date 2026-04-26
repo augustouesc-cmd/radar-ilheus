@@ -124,6 +124,35 @@ app.post('/api/noticias', (req, res) => {
   res.status(201).json(article);
 });
 
+// ── /weather (cache 15 min) ───────────────────────────────────
+
+const weatherCache = { data: null, ts: 0 };
+const WEATHER_TTL  = 15 * 60 * 1000;
+
+app.get('/weather', async (_req, res) => {
+  const now = Date.now();
+  if (weatherCache.data && now - weatherCache.ts < WEATHER_TTL) {
+    return res.json(weatherCache.data);
+  }
+  const key = process.env.OPENWEATHER_KEY;
+  if (!key) return res.status(503).json({ error: 'OPENWEATHER_KEY not set' });
+  try {
+    const r    = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Ilheus,BR&units=metric&lang=pt&appid=${key}`);
+    const json = await r.json();
+    if (!r.ok) throw new Error(json.message || 'upstream error');
+    weatherCache.data = {
+      city:        'Ilhéus',
+      temp:        Math.round(json.main.temp),
+      description: json.weather[0].description
+    };
+    weatherCache.ts = now;
+    res.json(weatherCache.data);
+  } catch (err) {
+    console.error('[/weather]', err.message);
+    res.status(502).json({ error: err.message });
+  }
+});
+
 // ── rotas ─────────────────────────────────────────────────────
 
 app.get('/', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
